@@ -1,0 +1,20 @@
+{
+  "name": "Instagram skills",
+  "bashAsk": [
+    {
+      "pattern": "\\b(?:curl|wget|http|https|fetch|requests|axios|Invoke-WebRequest|Invoke-RestMethod|iwr|irm)\\b[^|;&]*(?:graph\\.(?:facebook|instagram)\\.com|api\\.instagram\\.com|i\\.instagram\\.com)",
+      "reason": "talks to Instagram's API; nothing is posted, sent or replied to until the owner says yes"
+    }
+  ],
+  "pathAsk": [
+    {
+      "pattern": "^\\.claude-plugin/(?:plugin|marketplace)\\.json$",
+      "reason": "changes what installs when someone adds this plugin"
+    }
+  ],
+  "tests": [
+    { "tool": "Bash", "input": { "command": "curl -X POST 'https://graph.facebook.com/v21.0/123/media_publish'" }, "expect": "ask" },
+    { "tool": "Bash", "input": { "command": "python3 skills/ig-reel/hookscore.py draft.txt" }, "expect": "allow" },
+    { "tool": "Edit", "input": { "file_path": "/repo/.claude-plugin/plugin.json", "new_string": "x" }, "expect": "ask" }
+  ]
+}

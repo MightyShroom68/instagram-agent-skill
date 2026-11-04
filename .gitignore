@@ -3,3 +3,7 @@ __pycache__/
 *.pyc
 .venv/
 *.tmp
+
+# Claude guard ledger: local record of what Claude did, never committed
+.claude/guard/ledger*.jsonl
+.claude/settings.local.json
